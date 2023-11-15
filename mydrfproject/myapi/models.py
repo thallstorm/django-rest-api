@@ -30,3 +30,28 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         "from@example.com",
     [reset_password_token.user.email],
     )
+
+class ProgrammingLanguage(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    level = models.CharField(max_length=20)  # beginner, experienced, expert
+
+class Project(models.Model):
+    creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    project_name = models.CharField(max_length=100)
+    description = models.TextField()
+    maximum_collaborators = models.PositiveIntegerField()
+    collaborators = models.ManyToManyField(CustomUser, related_name='projects')
+
+class Collaboration(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    accepted = models.BooleanField(default=False)
+
+class Skill(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    proficiency = models.CharField(max_length=20)  # e.g., beginner, intermediate, advanced
+
+    def __str__(self):
+        return self.name    
