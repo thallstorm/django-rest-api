@@ -10,7 +10,12 @@ from django_rest_passwordreset.signals import reset_password_token_created
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
 
-    # Add custom fields here, if needed
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
+    age = models.PositiveIntegerField(blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True)
+    residence = models.CharField(max_length=100, blank=True)
+
 
     def __str__(self):
         return self.username

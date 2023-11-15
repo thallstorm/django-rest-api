@@ -1,6 +1,5 @@
 from django.urls import path, include
 from .views import register_user, user_login, user_logout, change_password
-from knox import views as knox_views
 
 urlpatterns = [
     path('register/', register_user, name='register'),
