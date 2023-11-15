@@ -165,3 +165,9 @@ def user_statistics(request):
         projects_contributed = Project.objects.filter(collaborators=request.user).count()
         projects_created = Project.objects.filter(creator=request.user).count()
         return Response({'projects_contributed': projects_contributed, 'projects_created': projects_created}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def open_projects(request):
+    projects = Project.objects.all()
+    serializer = ProjectSerializer(projects, many=True)
+    return Response(serializer.data)

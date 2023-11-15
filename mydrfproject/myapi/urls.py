@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import register_user, user_login, user_logout, change_password, add_skill, remove_skill, create_project, delete_project, express_interest, accept_collaboration, decline_collaboration, user_statistics
+from .views import register_user, user_login, user_logout, change_password, add_skill, remove_skill, create_project, delete_project, express_interest, accept_collaboration, decline_collaboration, user_statistics, open_projects
 
 urlpatterns = [
     path('register/', register_user, name='register'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('accept_collaboration/<int:collaboration_id>/', accept_collaboration, name='accept_collaboration'),
     path('decline_collaboration/<int:collaboration_id>/', decline_collaboration, name='decline_collaboration'),
     path('user_statistics/', user_statistics, name='user_statistics'),
+    path('open_projects/', open_projects, name='open_projects'),
 ]
